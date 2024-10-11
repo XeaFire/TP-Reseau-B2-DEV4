@@ -25,7 +25,7 @@ except socket.error as msg:
     sys.exit(1)
 
 
-if "meo" in clientmessage or "waf" in clientmessage:
+if "meo" not in clientmessage or "waf" not in clientmessage:
     raise("Il n'y a pas meo ou waf dans la phrase sad :/")
 # note : la double parenthèse n'est pas une erreur : on envoie un tuple à la fonction connect()
 
