@@ -10,9 +10,10 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Connexion au serveur
 
-clientmessage =input("Que veux-tu envoyer au serveur : ")
+
 
 while True:
+    clientmessage =input("Que veux-tu envoyer au serveur : ")
     if type(clientmessage) is not str:
         print("Votre réponse n'est pas valide")
     else:
@@ -23,6 +24,9 @@ except socket.error as msg:
     print(f"Erreur de connexion avec le serveur : {msg}")
     sys.exit(1)
 
+
+if "meo" in clientmessage or "waf" in clientmessage:
+    raise("Il n'y a pas meo ou waf dans la phrase sad :/")
 # note : la double parenthèse n'est pas une erreur : on envoie un tuple à la fonction connect()
 
 print(f"Connecté avec succès au serveur {host} sur le port {port}")
