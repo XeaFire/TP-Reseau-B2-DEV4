@@ -33,6 +33,8 @@ while True:
             print("ptdr t ki")
         else:
             print("Mes respects humble humain.")
+        conn.sendall(b'Hi mate !')
+
     except socket.error:
         print("Error Occured.")
         break
