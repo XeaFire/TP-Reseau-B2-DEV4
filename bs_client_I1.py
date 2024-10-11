@@ -21,6 +21,6 @@ data = s.recv(1024)
 s.close()
 
 # Affichage de la réponse reçue du serveur
-print(f"Le serveur a répondu {repr(data)}")
+print(data)
 import socket
 
