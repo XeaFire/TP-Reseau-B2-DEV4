@@ -15,9 +15,7 @@ s.listen(1)
 # On définit l'action à faire quand quelqu'un se connecte : on accepte
 conn, addr = s.accept()
 # Dès que quelqu'un se connecte, on affiche un message qui contient son adresse
-print('Connected by', addr)
-message = "Hi mate !"
-convertedmessage = message.encode(encoding="utf-8")  
+print('Connected by', addr) 
 # Petite boucle infinie (bah oui c'est un serveur)
 # A chaque itération la boucle reçoit des données et les traite
 while True:
@@ -33,7 +31,7 @@ while True:
         print(f"Données reçues du client : {data}")
 
         # On répond au client un truc
-        conn.sendall(convertedmessage)
+        conn.sendall(b'Hi mate !')
 
     except socket.error:
         print("Error Occured.")

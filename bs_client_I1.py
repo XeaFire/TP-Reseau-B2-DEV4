@@ -1,4 +1,5 @@
 import socket
+import sys
 
 # On définit la destination de la connexion
 host = '5.5.5.11'  # IP du serveur
@@ -12,15 +13,18 @@ s.connect((host, port))
 # note : la double parenthèse n'est pas une erreur : on envoie un tuple à la fonction connect()
 
 # Envoi de data bidon
-s.sendall(b'SALUT MEC')
+s.sendall(b'Meowwwww')
 
 # On reçoit 1024 bytes qui contiennent peut-être une réponse du serveur
 data = s.recv(1024)
-
+if not data :
+    sys.exit(1)
 # On libère le socket TCP
 s.close()
 
 # Affichage de la réponse reçue du serveur
 print(data)
-import socket
+
+sys.exit(0)
+
 
