@@ -20,7 +20,7 @@ while True:
         break
 
 if "meo" not in clientmessage or "waf" not in clientmessage:
-    raise("Il n'y a pas meo ou waf dans la phrase sad :/")
+    raise TypeError("Il n'y a pas meo ou waf dans la phrase sad :/")
 
 
 try :
