@@ -34,3 +34,6 @@ b'Hi mate !'
 [tristan@server TP-Reseau-B2-DEV4]$ ss -lnpt | grep "13337"
 LISTEN 0      1           5.5.5.11:13337      0.0.0.0:*    users:(("python",pid=14610,fd=3))
 ```
+
+
+## 3. You say client I hear control
