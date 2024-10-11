@@ -15,7 +15,7 @@ s.listen(1)
 # On définit l'action à faire quand quelqu'un se connecte : on accepte
 conn, addr = s.accept()
 # Dès que quelqu'un se connecte, on affiche un message qui contient son adresse
-print('Connected by', addr) 
+print(f"Un client vient de se co et son IP c'est {addr}.") 
 # Petite boucle infinie (bah oui c'est un serveur)
 # A chaque itération la boucle reçoit des données et les traite
 while True:
@@ -23,16 +23,16 @@ while True:
     try:
         # On reçoit 1024 bytes de données
         data = conn.recv(1024)
-
+        
         # Si on a rien reçu, on continue
         if not data: break
 
-        # On affiche dans le terminal les données reçues du client
-        print(f"Données reçues du client : {data}")
-
-        # On répond au client un truc
-        conn.sendall(b'Hi mate !')
-
+        if "meo" in str(data):
+            print("Meo à toi confrère.")
+        elif "waf" in str(data):
+            print("ptdr t ki")
+        else:
+            print("Mes respects humble humain.")
     except socket.error:
         print("Error Occured.")
         break
