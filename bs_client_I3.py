@@ -18,6 +18,11 @@ while True:
         print("Votre réponse n'est pas valide")
     else:
         break
+
+if "meo" not in clientmessage or "waf" not in clientmessage:
+    raise("Il n'y a pas meo ou waf dans la phrase sad :/")
+
+
 try :
     s.connect((host, port))
 except socket.error as msg:
@@ -25,8 +30,7 @@ except socket.error as msg:
     sys.exit(1)
 
 
-if "meo" not in clientmessage or "waf" not in clientmessage:
-    raise("Il n'y a pas meo ou waf dans la phrase sad :/")
+
 # note : la double parenthèse n'est pas une erreur : on envoie un tuple à la fonction connect()
 
 print(f"Connecté avec succès au serveur {host} sur le port {port}")
