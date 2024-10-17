@@ -51,7 +51,7 @@ s.listen(1)
 conn, addr = s.accept()
 # Dès que quelqu'un se connecte, on affiche un message qui contient son adresse
 print(f"Un client vient de se co et son IP c'est {addr}.") 
-utils.logs(f"Un client {addr} s'est connecté.")
+utils.logs.log(f"Un client {addr} s'est connecté.")
 
 # Petite boucle infinie (bah oui c'est un serveur)
 # A chaque itération la boucle reçoit des données et les traite
@@ -64,7 +64,7 @@ while True:
         # Si on a rien reçu, on continue
         if not data: break
 
-        utils.logs('Le client {addr} a envoyé "{data}"')
+        utils.logs.log('Le client {addr} a envoyé "{data}"')
         if "meo" in str(data):
             print("Meo à toi confrère.")
         elif "waf" in str(data):
