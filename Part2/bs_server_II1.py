@@ -16,20 +16,23 @@ args = parser.parse_args()
 
 ip_regex = r"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$"
 
-if int(args.port) < 0 or int(args.port) > 65535:
-    print(f"ERROR -p argument invalide. Le port spécifié {args.port} n'est pas un port valide (de 0 à 65535).")
-    sys.exit(1)
-elif int(args.port) < 1024:
-    print(f"ERROR -p argument invalide. Le port spécifié {args.port} est un port privilégié. Spécifiez un port au dessus de 1024.")
-    sys.exit(2)
-elif not re.match(ip_regex, args.listen):
-    print(f"ERROR -l argument invalide. L'adresse {args.listen} n'est pas une adresse IP valide.")
-    sys.exit(3)
-elif not utils.checkping.check_ping(args.listen):
-    print(f"ERROR -l argument invalide. L'adresse {args.listen} n'est pas l'une des adresses IP de cette machine.")
+if (args.port):
+    if int(args.port) < 0 or int(args.port) > 65535:
+        print(f"ERROR -p argument invalide. Le port spécifié {args.port} n'est pas un port valide (de 0 à 65535).")
+        sys.exit(1)
+    elif int(args.port) < 1024:
+        print(f"ERROR -p argument invalide. Le port spécifié {args.port} est un port privilégié. Spécifiez un port au dessus de 1024.")
+        sys.exit(2)
+    else:
+        port = int(args.port)
+if (args.listen):
+    if not re.match(ip_regex, args.listen):
+        print(f"ERROR -l argument invalide. L'adresse {args.listen} n'est pas une adresse IP valide.")
+        sys.exit(3)
+    elif not utils.checkping.check_ping(args.listen):
+        print(f"ERROR -l argument invalide. L'adresse {args.listen} n'est pas l'une des adresses IP de cette machine.")
 
-else:
-    port = int(args.port)
+
 
 
 
