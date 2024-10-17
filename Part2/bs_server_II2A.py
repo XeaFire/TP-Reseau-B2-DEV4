@@ -8,6 +8,7 @@ import utils.logs
 host = '5.5.5.11'  # IP du serveur
 port = 13337       # Port choisir par le serveur
 
+utils.logs.create_log_dir()
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--port", action="store", help="Choose wich port you want open")
