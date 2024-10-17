@@ -9,7 +9,7 @@ port = 13337       # Port choisir par le serveur
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-p", "--port", action="store" help="Choose wich port you want open")
+parser.add_argument("-p", "--port", action="store", help="Choose wich port you want open")
 parser.add_argument("-l", "--listen", action="store", help="Choose wich IP you want listen")
 
 args = parser.parse_args()
