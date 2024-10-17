@@ -39,5 +39,5 @@ def log(msg: str, log_level:str, showConsole=False) -> True:
         f.write(log_line)
 
     if showConsole:
-        print(msg)
+        print("[" + log_level + "] " + msg)
     return True
