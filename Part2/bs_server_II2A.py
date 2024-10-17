@@ -65,7 +65,7 @@ while True:
         # Si on a rien reçu, on continue
         if not data: break
 
-        utils.logs.log('Le client {addr} a envoyé "{data}"', "INFO")
+        utils.logs.log(f'Le client {addr} a envoyé "{data}"', "INFO")
         if "meo" in str(data):
             print("Meo à toi confrère.")
         elif "waf" in str(data):
@@ -73,7 +73,7 @@ while True:
         else:
             print("Mes respects humble humain.")
         conn.sendall(b'Hi mate !')
-
+        utils.logs.log(f'Réponse envoyée au client {addr} : "Hi mate !"')
     except socket.error:
         print("Error Occured.")
         break

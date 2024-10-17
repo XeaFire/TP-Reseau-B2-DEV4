@@ -27,7 +27,7 @@ def create_log_dir() -> bool:
 
 
 
-def log(msg: str, log_level:str) -> True:
+def log(msg: str, log_level:str, showConsole) -> True:
     """Writes given msg to LOG_FILE adding a timestamp"""
     # on récupère un timestamp au bon format pour la ligne de log
     log_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -38,4 +38,6 @@ def log(msg: str, log_level:str) -> True:
     with open(LOG_FILE, "a", encoding="utf-8") as f:
         f.write(log_line)
 
+    if showConsole:
+        print(msg)
     return True
