@@ -5,8 +5,6 @@ import re
 import threading
 import time
 
-import os
-sys.path.append(os.path.abspath('..'))
 import utils
 
 def checktimer(timer):
