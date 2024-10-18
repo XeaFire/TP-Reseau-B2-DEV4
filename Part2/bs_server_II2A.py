@@ -8,11 +8,12 @@ import threading
 import time
 
 def checktimer(timer):
-    time.sleep(1)
-    print(int(time.time()))
-    if int(time.time() > timer + 60) :
-        timer = int(time.time())
-        utils.logs.log(f"Aucun client depuis plus de une minute.", "WARN", True)
+    while True:
+        time.sleep(1)
+        print(int(time.time()))
+        if int(time.time() > timer + 60) :
+            timer = int(time.time())
+            utils.logs.log(f"Aucun client depuis plus de une minute.", "WARN", True)
 
 host = '5.5.5.11'  # IP du serveur
 port = 13337       # Port choisir par le serveur
