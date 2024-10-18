@@ -1,7 +1,6 @@
 import socket
 import sys
-import utils
-import utils.logs
+from ..utils import *
 
 # On définit la destination de la connexion
 host = '5.5.5.11'  # IP du serveur

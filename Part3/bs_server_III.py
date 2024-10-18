@@ -2,8 +2,7 @@ import socket
 import sys
 import argparse
 import re
-import utils
-import utils.logs
+from ..utils import *
 import threading
 import time
 
