@@ -55,6 +55,10 @@ s.listen(1)
 
 
 while True:
+    time.sleep(1)
+    if int(time.time() > timer + 60) :
+        timer = int(time.time())
+        utils.logs.log(f"Aucun client depuis plus de une minute.", "WARN", True)
     # On définit l'action à faire quand quelqu'un se connecte : on accepte
     conn, addr = s.accept()
     # Dès que quelqu'un se connecte, on affiche un message qui contient son adresse
