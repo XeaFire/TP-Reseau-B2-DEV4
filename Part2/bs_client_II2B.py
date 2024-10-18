@@ -1,6 +1,8 @@
 import socket
 import sys
-from ..utils import *
+import os
+sys.path.append(os.path.abspath('..'))
+import utils
 
 # On définit la destination de la connexion
 host = '5.5.5.11'  # IP du serveur
