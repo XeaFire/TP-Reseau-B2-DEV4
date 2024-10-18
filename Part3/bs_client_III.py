@@ -30,14 +30,15 @@ utils.logs.log(f"Message envoyé au serveur {host} : {clientmessage}.", "INFO", 
 
 # On reçoit 1024 bytes qui contiennent peut-être une réponse du serveur
 data = s.recv(1024)
+data = data.decode("utf-8")
 if not data :
     sys.exit(1)
-utils.logs.log(f"Réponse reçue du serveur {host} : {data.decode("utf-8")}", "INFO", False, "/var/log/bs_client/bs_client.log")
+utils.logs.log(f"Réponse reçue du serveur {host} : {data}", "INFO", False, "/var/log/bs_client/bs_client.log")
 # On libère le socket TCP
 s.close()
 
 # Affichage de la réponse reçue du serveur
-print(data.decode("utf-8"))
+print(data)
 
 sys.exit(0)
 
