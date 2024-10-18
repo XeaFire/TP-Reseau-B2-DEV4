@@ -44,7 +44,7 @@ if (args.listen):
     elif not utils.checkping.check_ping(args.listen):
         print(f"ERROR -l argument invalide. L'adresse {args.listen} n'est pas l'une des adresses IP de cette machine.")
 
-thread = threading.Thread(target=checktimer(timer))
+thread = threading.Thread(target=checktimer, args=(timer,))
 thread.start()
 utils.logs.log(f"Le serveur tourne sur {host}:{port}", "INFO", True)
 
