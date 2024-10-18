@@ -79,6 +79,8 @@ while True:
             utils.logs.log(f'Le client {addr} a envoyé "{data}"', "INFO", True, "/var/log/bs_server/bs_server.log")
             timer = int(time.time())
             
+
+            print(eval("5+5"))
             conn.sendall(bytes(eval(str(data))))
             utils.logs.log(f'Réponse envoyée au client {addr} : "Hi mate !"', "INFO", True, "/var/log/bs_server/bs_server.log")
         except socket.error:
