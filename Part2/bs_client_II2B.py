@@ -17,23 +17,23 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try :
     s.connect((host, port))
 except socket.error as msg:
-    utils.logs.log("Impossible de se connecter au serveur <IP_SERVER> sur le port <PORT>.", "ERROR", True)
+    utils.logs.log("Impossible de se connecter au serveur <IP_SERVER> sur le port <PORT>.", "ERROR", True, "/var/log/bs_client/bs_client.log")
     
     sys.exit(1)
 
 # note : la double parenthèse n'est pas une erreur : on envoie un tuple à la fonction connect()
-utils.logs.log(f"Connecté avec succès au serveur {host} sur le port {port}", "INFO", False)
+utils.logs.log(f"Connecté avec succès au serveur {host} sur le port {port}", "INFO", False, "/var/log/bs_client/bs_client.log")
 clientmessage =input("Que veux-tu envoyer au serveur : ")
 # Envoi de data bidon
 s.sendall(clientmessage.encode(encoding="utf-8"))
-utils.logs.log("Message envoyé au serveur <IP_SERVER> : <MESSAGE>.", "INFO", Fals)
+utils.logs.log("Message envoyé au serveur <IP_SERVER> : <MESSAGE>.", "INFO", False, "/var/log/bs_client/bs_client.log")
 
 
 # On reçoit 1024 bytes qui contiennent peut-être une réponse du serveur
 data = s.recv(1024)
 if not data :
     sys.exit(1)
-utils.logs.log(f"Réponse reçue du serveur {host} : {data}")
+utils.logs.log(f"Réponse reçue du serveur {host} : {data}", "INFO", False, "/var/log/bs_client/bs_client.log")
 # On libère le socket TCP
 s.close()
 
