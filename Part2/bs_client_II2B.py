@@ -1,6 +1,7 @@
 import socket
 import sys
 import utils
+import utils.logs
 
 # On définit la destination de la connexion
 host = '5.5.5.11'  # IP du serveur
@@ -11,27 +12,28 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Connexion au serveur
 
-clientmessage =input("Que veux-tu envoyer au serveur : ")
 
 
 try :
     s.connect((host, port))
 except socket.error as msg:
-    print(f"Erreur de connexion avec le serveur : {msg}")
+    utils.logs.log("Impossible de se connecter au serveur <IP_SERVER> sur le port <PORT>.", "ERROR", True)
+    
     sys.exit(1)
 
 # note : la double parenthèse n'est pas une erreur : on envoie un tuple à la fonction connect()
-
-print(f"Connecté avec succès au serveur {host} sur le port {port}")
+utils.logs.log(f"Connecté avec succès au serveur {host} sur le port {port}", "INFO", False)
+clientmessage =input("Que veux-tu envoyer au serveur : ")
 # Envoi de data bidon
 s.sendall(clientmessage.encode(encoding="utf-8"))
-
+utils.logs.log("Message envoyé au serveur <IP_SERVER> : <MESSAGE>.", "INFO", Fals)
 
 
 # On reçoit 1024 bytes qui contiennent peut-être une réponse du serveur
 data = s.recv(1024)
 if not data :
     sys.exit(1)
+utils.logs.log(f"Réponse reçue du serveur {host} : {data}")
 # On libère le socket TCP
 s.close()
 

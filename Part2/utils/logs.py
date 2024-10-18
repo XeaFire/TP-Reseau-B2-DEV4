@@ -44,5 +44,7 @@ def log(msg: str, log_level:str, showConsole=False) -> True:
             color = '\033[97m' # Blanc
         elif log_level == "WARN":
             color = '\033[33m'
+        elif log_level == "ERROR":
+            color = '\033[31m'
         print(color + "[" + log_level + "] " + msg)
     return True
