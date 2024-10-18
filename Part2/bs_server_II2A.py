@@ -4,15 +4,24 @@ import argparse
 import re
 import utils
 import utils.logs
+import asyncio
+import time
 
 host = '5.5.5.11'  # IP du serveur
 port = 13337       # Port choisir par le serveur
+
+timer = int(time.time())
 
 utils.logs.create_log_dir()
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--port", action="store", help="Choose wich port you want open")
 parser.add_argument("-l", "--listen", action="store", help="Choose wich IP you want listen")
+
+async def checkTimer():
+    while True:
+        await asyncio.sleep(1)
+        print(timer)
 
 args = parser.parse_args()
 
@@ -36,6 +45,7 @@ if (args.listen):
 
 
 
+
 utils.logs.log(f"Le serveur tourne sur {host}:{port}", "INFO", True)
 
 # Création de l'objet socket de type TCP (SOCK_STREAM)
@@ -45,10 +55,13 @@ s.bind((host, port))
 
 # Place le programme en mode écoute derrière le port auquel il s'est bind
 s.listen(1)
+
+
+
 # On définit l'action à faire quand quelqu'un se connecte : on accepte
 conn, addr = s.accept()
 # Dès que quelqu'un se connecte, on affiche un message qui contient son adresse
-print(f"Un client vient de se co et son IP c'est {addr}.") 
+
 utils.logs.log(f"Un client {addr} s'est connecté.", "INFO", True)
 
 # Petite boucle infinie (bah oui c'est un serveur)
@@ -63,6 +76,7 @@ while True:
         if not data: break
 
         utils.logs.log(f'Le client {addr} a envoyé "{data}"', "INFO", True)
+        timer = int(time.time())
         if "meo" in str(data):
             print("Meo à toi confrère.")
         elif "waf" in str(data):
