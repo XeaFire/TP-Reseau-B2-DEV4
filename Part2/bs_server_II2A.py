@@ -57,37 +57,37 @@ s.bind((host, port))
 s.listen(1)
 
 
-
-# On définit l'action à faire quand quelqu'un se connecte : on accepte
-conn, addr = s.accept()
-# Dès que quelqu'un se connecte, on affiche un message qui contient son adresse
-
-utils.logs.log(f"Un client {addr} s'est connecté.", "INFO", True)
-
-# Petite boucle infinie (bah oui c'est un serveur)
-# A chaque itération la boucle reçoit des données et les traite
 while True:
+    # On définit l'action à faire quand quelqu'un se connecte : on accepte
+    conn, addr = s.accept()
+    # Dès que quelqu'un se connecte, on affiche un message qui contient son adresse
 
-    try:
-        # On reçoit 1024 bytes de données
-        data = conn.recv(1024)
-        
-        # Si on a rien reçu, on continue
-        if not data: break
+    utils.logs.log(f"Un client {addr} s'est connecté.", "INFO", True)
 
-        utils.logs.log(f'Le client {addr} a envoyé "{data}"', "INFO", True)
-        timer = int(time.time())
-        if "meo" in str(data):
-            print("Meo à toi confrère.")
-        elif "waf" in str(data):
-            print("ptdr t ki")
-        else:
-            print("Mes respects humble humain.")
-        conn.sendall(b'Hi mate !')
-        utils.logs.log(f'Réponse envoyée au client {addr} : "Hi mate !"', "INFO", True)
-    except socket.error:
-        print("Error Occured.")
-        break
+    # Petite boucle infinie (bah oui c'est un serveur)
+    # A chaque itération la boucle reçoit des données et les traite
+    while True:
+
+        try:
+            # On reçoit 1024 bytes de données
+            data = conn.recv(1024)
+            
+            # Si on a rien reçu, on continue
+            if not data: break
+
+            utils.logs.log(f'Le client {addr} a envoyé "{data}"', "INFO", True)
+            timer = int(time.time())
+            if "meo" in str(data):
+                print("Meo à toi confrère.")
+            elif "waf" in str(data):
+                print("ptdr t ki")
+            else:
+                print("Mes respects humble humain.")
+            conn.sendall(b'Hi mate !')
+            utils.logs.log(f'Réponse envoyée au client {addr} : "Hi mate !"', "INFO", True)
+        except socket.error:
+            print("Error Occured.")
+            break
 
 # On ferme proprement la connexion TCP
 conn.close()
