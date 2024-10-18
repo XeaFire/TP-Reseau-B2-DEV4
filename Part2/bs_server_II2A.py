@@ -10,7 +10,6 @@ import time
 def checktimer(timer):
     while True:
         time.sleep(1)
-        print(int(time.time()))
         if int(time.time() > timer + 60) :
             timer = int(time.time())
             utils.logs.log(f"Aucun client depuis plus de une minute.", "WARN", True)
