@@ -4,8 +4,15 @@ import argparse
 import re
 import utils
 import utils.logs
-import asyncio
+import threading
 import time
+
+def checktimer():
+    time.sleep(1)
+    print(int(time.time()))
+    if int(time.time() > timer + 60) :
+        timer = int(time.time())
+        utils.logs.log(f"Aucun client depuis plus de une minute.", "WARN", True)
 
 host = '5.5.5.11'  # IP du serveur
 port = 13337       # Port choisir par le serveur
@@ -17,12 +24,6 @@ utils.logs.create_log_dir()
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--port", action="store", help="Choose wich port you want open")
 parser.add_argument("-l", "--listen", action="store", help="Choose wich IP you want listen")
-
-async def checkTimer():
-    while True:
-        await asyncio.sleep(1)
-        print(timer)
-
 args = parser.parse_args()
 
 ip_regex = r"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$"
@@ -44,7 +45,8 @@ if (args.listen):
         print(f"ERROR -l argument invalide. L'adresse {args.listen} n'est pas l'une des adresses IP de cette machine.")
 
 utils.logs.log(f"Le serveur tourne sur {host}:{port}", "INFO", True)
-
+thread = threading.Thread(target=checktimer)
+thread.start()
 # Création de l'objet socket de type TCP (SOCK_STREAM)
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -55,11 +57,7 @@ s.listen(1)
 
 
 while True:
-    time.sleep(1)
-    print(int(time.time()))
-    if int(time.time() > timer + 60) :
-        timer = int(time.time())
-        utils.logs.log(f"Aucun client depuis plus de une minute.", "WARN", True)
+    
     # On définit l'action à faire quand quelqu'un se connecte : on accepte
     conn, addr = s.accept()
     # Dès que quelqu'un se connecte, on affiche un message qui contient son adresse
@@ -91,8 +89,10 @@ while True:
             print("Error Occured.")
             break
 
-# On ferme proprement la connexion TCP
-conn.close()
+    # On ferme proprement la connexion TCP
+    conn.close()
+
+
 
 sys.exit(0)
 
