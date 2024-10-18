@@ -5,7 +5,7 @@ from sys import exit as sysexit, argv
 from os import mkdir, path, access, W_OK
 
 
-TEMP_DIR = "/var/log/"
+TEMP_DIR = "/var/log"
 LOG_DIR = f"{TEMP_DIR}/bs_server"
 LOG_FILE = f"{LOG_DIR}/bs_server.log"
 
