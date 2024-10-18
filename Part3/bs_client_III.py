@@ -37,7 +37,7 @@ utils.logs.log(f"Réponse reçue du serveur {host} : {data}", "INFO", False, "/v
 s.close()
 
 # Affichage de la réponse reçue du serveur
-print(data.decode("utf-8"))
+print(int.from_bytes(data))
 
 sys.exit(0)
 
