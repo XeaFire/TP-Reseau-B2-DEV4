@@ -7,7 +7,7 @@ import utils.logs
 import threading
 import time
 
-def checktimer():
+def checktimer(timer):
     time.sleep(1)
     print(int(time.time()))
     if int(time.time() > timer + 60) :
@@ -45,7 +45,7 @@ if (args.listen):
         print(f"ERROR -l argument invalide. L'adresse {args.listen} n'est pas l'une des adresses IP de cette machine.")
 
 utils.logs.log(f"Le serveur tourne sur {host}:{port}", "INFO", True)
-thread = threading.Thread(target=checktimer)
+thread = threading.Thread(target=checktimer(timer))
 thread.start()
 # Création de l'objet socket de type TCP (SOCK_STREAM)
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
