@@ -81,9 +81,8 @@ while True:
             
 
             clientvalue = data.decode("utf-8")
-            print(clientvalue)
-            print(eval(clientvalue).encode("utf-8"))
-            conn.sendall(eval(clientvalue).encode("utf-8"))
+            clientvalue = str(eval(clientvalue))
+            conn.sendall(clientvalue.encode("utf-8"))
             utils.logs.log(f'Réponse envoyée au client {addr} : "Hi mate !"', "INFO", True, "/var/log/bs_server/bs_server.log")
         except socket.error:
             print("Error Occured.")
