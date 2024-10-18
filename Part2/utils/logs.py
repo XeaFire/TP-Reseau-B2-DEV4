@@ -39,5 +39,10 @@ def log(msg: str, log_level:str, showConsole=False) -> True:
         f.write(log_line)
 
     if showConsole:
-        print("[" + log_level + "] " + msg)
+        color = ""
+        if log_level == "INFO":
+            color = '\033[97m' # Blanc
+        elif log_level == "WARN":
+            color = '\033[33m'
+        print(color + "[" + log_level + "] " + msg)
     return True

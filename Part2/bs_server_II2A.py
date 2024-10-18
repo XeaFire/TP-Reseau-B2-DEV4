@@ -36,10 +36,7 @@ if (args.listen):
 
 
 
-
-
-# On définit la destination de la connexion
-
+utils.logs.log(f"Le serveur tourne sur {host}:{port}", "INFO", True)
 
 # Création de l'objet socket de type TCP (SOCK_STREAM)
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -73,7 +70,7 @@ while True:
         else:
             print("Mes respects humble humain.")
         conn.sendall(b'Hi mate !')
-        utils.logs.log(f'Réponse envoyée au client {addr} : "Hi mate !"', True)
+        utils.logs.log(f'Réponse envoyée au client {addr} : "Hi mate !"', "INFO", True)
     except socket.error:
         print("Error Occured.")
         break
