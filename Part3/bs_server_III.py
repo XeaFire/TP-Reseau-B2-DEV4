@@ -80,8 +80,8 @@ while True:
             timer = int(time.time())
             
 
-            print(eval("5+5"))
-            conn.sendall(bytes(eval(str(data))))
+            clientvalue = data.decode("utf-8")
+            conn.sendall(bytes(eval(clientvalue)))
             utils.logs.log(f'Réponse envoyée au client {addr} : "Hi mate !"', "INFO", True, "/var/log/bs_server/bs_server.log")
         except socket.error:
             print("Error Occured.")
