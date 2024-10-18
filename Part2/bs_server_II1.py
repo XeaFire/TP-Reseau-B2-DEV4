@@ -2,7 +2,8 @@ import socket
 import sys
 import argparse
 import re
-import utils
+import utils.logs
+import utils.checkping
 host = '5.5.5.11'  # IP du serveur
 port = 13337       # Port choisir par le serveur
 

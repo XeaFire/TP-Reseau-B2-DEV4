@@ -5,7 +5,7 @@ import re
 import threading
 import time
 
-import utils
+import utils.logs
 
 def checktimer(timer):
     while True:
