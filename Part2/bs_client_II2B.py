@@ -26,7 +26,7 @@ utils.logs.log(f"Connecté avec succès au serveur {host} sur le port {port}", "
 clientmessage =input("Que veux-tu envoyer au serveur : ")
 # Envoi de data bidon
 s.sendall(clientmessage.encode(encoding="utf-8"))
-utils.logs.log("Message envoyé au serveur <IP_SERVER> : <MESSAGE>.", "INFO", False, "/var/log/bs_client/bs_client.log")
+utils.logs.log(f"Message envoyé au serveur {host} : {clientmessage}.", "INFO", False, "/var/log/bs_client/bs_client.log")
 
 
 # On reçoit 1024 bytes qui contiennent peut-être une réponse du serveur
