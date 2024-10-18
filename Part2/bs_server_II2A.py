@@ -44,7 +44,7 @@ if (args.listen):
         print(f"ERROR -l argument invalide. L'adresse {args.listen} n'est pas l'une des adresses IP de cette machine.")
 
 
-
+asyncio.run(checkTimer())
 
 utils.logs.log(f"Le serveur tourne sur {host}:{port}", "INFO", True)
 
