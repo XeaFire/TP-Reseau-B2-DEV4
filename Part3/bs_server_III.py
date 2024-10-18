@@ -78,13 +78,8 @@ while True:
 
             utils.logs.log(f'Le client {addr} a envoyé "{data}"', "INFO", True, "/var/log/bs_server/bs_server.log")
             timer = int(time.time())
-            if "meo" in str(data):
-                print("Meo à toi confrère.")
-            elif "waf" in str(data):
-                print("ptdr t ki")
-            else:
-                print("Mes respects humble humain.")
-            conn.sendall(b'Hi mate !')
+            
+            conn.sendall(bytes(eval(str(data))))
             utils.logs.log(f'Réponse envoyée au client {addr} : "Hi mate !"', "INFO", True, "/var/log/bs_server/bs_server.log")
         except socket.error:
             print("Error Occured.")
